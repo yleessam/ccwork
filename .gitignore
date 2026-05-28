@@ -17,6 +17,9 @@ dist-ssr/
 .env.local
 .env.*.local
 
+# Runtime data
+db.json
+
 # Claude Code
 .claude/
 
