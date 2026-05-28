@@ -26,6 +26,9 @@ npm run test:watch   # Vitest 워치 모드
 npx vitest run src/components/NoteList.test.tsx
 ```
 
+**커밋 컨벤션:** `type(scope): subject` 형태를 강제한다 (commitlint). type은 `feat` `fix` `docs` `style` `refactor` `test` `chore` 중 하나.  
+**Git 훅:** pre-commit → lint-staged(ESLint+Prettier), commit-msg → commitlint, pre-push → `npm test`
+
 ## 아키텍처
 
 ### 데이터 흐름
@@ -117,6 +120,6 @@ interface Note {
 | 위치 | 문제 |
 |------|------|
 | `App.tsx` | ~~전체 코드베이스가 named export를 쓰는데 `App`만 `export default` 사용~~ ✅ 적용됨 |
-| `Layout.tsx` | 폰트(`fontFamily`)와 높이(`calc(100vh - 65px)`)를 인라인 `style` prop으로 지정 — 나머지는 전부 Tailwind 클래스 |
-| `NoteEditor` vs `NoteList` | 저장 실패는 `alert()`로 표시, 로드 실패는 인라인 텍스트로 표시 — 에러 UX가 불통일 |
+| `Layout.tsx` | ~~인라인 `style` prop으로 폰트·높이 지정~~ ✅ Tailwind 클래스로 교체됨 |
+| `NoteEditor` vs `NoteList` | ~~저장 실패를 `alert()`로 표시~~ ✅ 인라인 텍스트로 통일됨 |
 | `NoteItem` | 삭제 버튼이 확인 없이 즉시 `onDelete` 호출 (다른 파괴적 작업에 패턴 적용 시 일관성 고려 필요) |
