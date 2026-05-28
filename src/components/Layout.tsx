@@ -12,8 +12,7 @@ export function Layout({ onNewNote, sidebar, main }: LayoutProps) {
       {/* 헤더 */}
       <header className="bg-card border-b border-border px-6 py-4 flex items-center justify-between shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
         <h1
-          className="text-2xl font-bold text-foreground"
-          style={{ fontFamily: 'Boogaloo, sans-serif' }}
+          className="text-2xl font-bold text-foreground font-display"
         >
           📝 Notes
         </h1>
@@ -26,7 +25,7 @@ export function Layout({ onNewNote, sidebar, main }: LayoutProps) {
       </header>
 
       {/* 바디 */}
-      <div className="flex" style={{ height: 'calc(100vh - 65px)' }}>
+      <div className="flex h-[calc(100vh-65px)]">
         {/* 사이드바 */}
         <div className="w-72 border-r border-border overflow-y-auto bg-muted/50 p-3 space-y-2 shrink-0">
           {sidebar}
