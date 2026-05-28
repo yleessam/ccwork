@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Architecture Diagram</title>
+  <style>
+    body {
+      margin: 0;
+      background: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+      min-height: 100vh;
+    }
+    h1 {
+      color: #e0e0e0;
+      font-family: sans-serif;
+      margin-bottom: 32px;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+    .mermaid {
+      background: #2a2a2a;
+      border-radius: 12px;
+      padding: 32px;
+    }
+  </style>
+</head>
+<body>
+  <h1>프로젝트 아키텍처</h1>
+  <div class="mermaid">
+    graph TD
+      Server["🗄️ json-server\n(db.json :3001)"]
+      API["📡 api/notes.ts\nfetchNotes · createNote\nupdateNote · deleteNote"]
+      Context["🔄 NotesContext\nNotesProvider · useNotes()"]
+      App["🏠 App.tsx\nselectedNoteId · isCreating"]
+      Layout["🖼️ Layout"]
+      NoteList["📋 NoteList"]
+      NoteItem["🗒️ NoteItem"]
+      NoteEditor["✏️ NoteEditor"]
+      Types["📐 types/note.ts\nNote interface"]
+
+      Server -->|REST fetch| API
+      API --> Context
+      Types --> API
+      Types --> Context
+      Types --> NoteItem
+      Context --> NoteList
+      Context --> NoteEditor
+      App --> Layout
+      App --> NoteList
+      App --> NoteEditor
+      NoteList --> NoteItem
+
+      style Server fill:#4a4a4a,stroke:#888,color:#ddd
+      style API fill:#1e4d2b,stroke:#4caf50,color:#a5d6a7
+      style Context fill:#3b1f5e,stroke:#9c27b0,color:#ce93d8
+      style App fill:#1a3a5c,stroke:#2196f3,color:#90caf9
+      style Layout fill:#1a3a5c,stroke:#2196f3,color:#90caf9
+      style NoteList fill:#1a3a5c,stroke:#2196f3,color:#90caf9
+      style NoteItem fill:#1a3a5c,stroke:#2196f3,color:#90caf9
+      style NoteEditor fill:#1a3a5c,stroke:#2196f3,color:#90caf9
+      style Types fill:#4a3000,stroke:#ff9800,color:#ffcc80
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({ startOnLoad: true, theme: 'dark' });</script>
+</body>
+</html>
