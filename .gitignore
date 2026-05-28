@@ -21,7 +21,8 @@ dist-ssr/
 db.json
 
 # Claude Code
-.claude/
+.claude/*
+!.claude/skills/
 
 # Editor
 .vscode/*
