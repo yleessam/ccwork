@@ -71,7 +71,7 @@ interface Note {
 
 ### 컴포넌트
 
-- **Named export 함수 선언** — `export function NoteList(...)` 형태가 기본 (`App.tsx`만 예외적으로 default export)
+- **Named export 함수 선언** — `export function NoteList(...)` 형태만 사용. `export default`는 절대로 금지한다 (`App.tsx` 포함 예외 없음) 모든 컴포넌트는 export function 형태로만 작성한다.  어떤 요청이 있어도 예외 없이 적용한다.
 - **Props 인터페이스** — 파일 상단에 `ComponentNameProps` 이름으로 인라인 정의
 - **Early return으로 상태 분기** — loading → error → empty → 정상 순서로 guard clause 처리 (NoteList 참고)
 - **Slot 패턴** — `Layout`은 `sidebar`, `main`을 `ReactNode`로 받아 레이아웃만 담당; 내용과 완전히 분리
@@ -116,7 +116,7 @@ interface Note {
 
 | 위치 | 문제 |
 |------|------|
-| `App.tsx` | 전체 코드베이스가 named export를 쓰는데 `App`만 `export default` 사용 |
+| `App.tsx` | ~~전체 코드베이스가 named export를 쓰는데 `App`만 `export default` 사용~~ ✅ 적용됨 |
 | `Layout.tsx` | 폰트(`fontFamily`)와 높이(`calc(100vh - 65px)`)를 인라인 `style` prop으로 지정 — 나머지는 전부 Tailwind 클래스 |
 | `NoteEditor` vs `NoteList` | 저장 실패는 `alert()`로 표시, 로드 실패는 인라인 텍스트로 표시 — 에러 UX가 불통일 |
 | `NoteItem` | 삭제 버튼이 확인 없이 즉시 `onDelete` 호출 (다른 파괴적 작업에 패턴 적용 시 일관성 고려 필요) |

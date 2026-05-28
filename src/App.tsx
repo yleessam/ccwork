@@ -4,7 +4,7 @@ import { Layout } from './components/Layout';
 import { NoteList } from './components/NoteList';
 import { NoteEditor } from './components/NoteEditor';
 
-function App() {
+export function App() {
   const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
 
@@ -29,15 +29,9 @@ function App() {
         onNewNote={handleNewNote}
         sidebar={<NoteList selectedNoteId={selectedNoteId} onSelect={handleSelectNote} />}
         main={
-          <NoteEditor
-            selectedNoteId={selectedNoteId}
-            isCreating={isCreating}
-            onDone={handleDone}
-          />
+          <NoteEditor selectedNoteId={selectedNoteId} isCreating={isCreating} onDone={handleDone} />
         }
       />
     </NotesProvider>
   );
 }
-
-export default App;
