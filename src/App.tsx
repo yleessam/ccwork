@@ -35,4 +35,3 @@ export function App() {
     </NotesProvider>
   );
 }
-// test
