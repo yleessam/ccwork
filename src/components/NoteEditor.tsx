@@ -12,6 +12,8 @@ export function NoteEditor({ selectedNoteId, isCreating, onDone }: NoteEditorPro
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [saving, setSaving] = useState(false);
+  const [titleError, setTitleError] = useState('');
+  const [saveError, setSaveError] = useState('');
 
   const selectedNote = notes.find((n) => n.id === selectedNoteId);
 
@@ -28,11 +30,12 @@ export function NoteEditor({ selectedNoteId, isCreating, onDone }: NoteEditorPro
 
   const handleSave = async () => {
     if (!title.trim()) {
-      alert('제목을 입력해주세요');
+      setTitleError('제목을 입력해주세요');
       return;
     }
 
     setSaving(true);
+    setSaveError('');
     try {
       if (isCreating) {
         await addNote(title, content);
@@ -42,7 +45,7 @@ export function NoteEditor({ selectedNoteId, isCreating, onDone }: NoteEditorPro
       onDone();
     } catch (e) {
       console.error(e);
-      alert('저장에 실패했습니다');
+      setSaveError('저장에 실패했습니다');
     } finally {
       setSaving(false);
     }
@@ -73,10 +76,11 @@ export function NoteEditor({ selectedNoteId, isCreating, onDone }: NoteEditorPro
       <input
         type="text"
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
         placeholder="제목"
-        className="w-full text-xl font-bold text-foreground bg-transparent border-none outline-none placeholder:text-muted-foreground/50 mb-4"
+        onChange={(e) => { setTitle(e.target.value); setTitleError(''); }}
+        className="w-full text-xl font-bold text-foreground bg-transparent border-none outline-none placeholder:text-muted-foreground/50 mb-1"
       />
+      {titleError && <p className="text-xs text-destructive mb-3">{titleError}</p>}
 
       {/* 구분선 */}
       <div className="h-px bg-border mb-4" />
@@ -91,6 +95,7 @@ export function NoteEditor({ selectedNoteId, isCreating, onDone }: NoteEditorPro
       />
 
       {/* 버튼 영역 */}
+      {saveError && <p className="text-xs text-destructive mb-3">{saveError}</p>}
       <div className="flex gap-3 mt-6 pt-4 border-t border-border">
         <button
           onClick={handleSave}
