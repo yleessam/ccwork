@@ -1,5 +1,6 @@
 {
   "name": "notes-app",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "concurrently \"vite\" \"json-server --watch db.json --port 3001\"",
