@@ -24,6 +24,9 @@ db.json
 .claude/*
 !.claude/skills/
 
+# Windows Zone.Identifier metadata
+*:Zone.Identifier
+
 # Editor
 .vscode/*
 !.vscode/extensions.json
