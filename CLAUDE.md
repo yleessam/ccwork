@@ -106,8 +106,17 @@ interface Note {
 
 ## 스타일
 
-- **Tailwind CSS v4** — `@tailwindcss/vite` 플러그인 방식 (별도 `tailwind.config` 파일 없음)
-- 테마 토큰(`bg-card`, `text-foreground`, `text-muted-foreground`, `border-border` 등)을 CSS 변수로 사용
+> 스타일 작업 시작 전 `/design` 스킬을 실행하세요.
+> PostToolUse 훅이 `.tsx`/`.css` 파일 편집 시 자동으로 디자인 규칙을 검사합니다.
+
+디자인 시스템 파일:
+- `docs/design-system/tokens.md` — 색상·타이포·스페이싱 토큰 (`index.css`와 동기화 유지)
+- `docs/design-system/components.md` — 버튼·카드·인풋·chip 코드 패턴
+- `docs/design-system/do-dont.md` — 금지 규칙 6가지 (PostToolUse 훅 검사 기준)
+
+**Tailwind CSS v4** — `@tailwindcss/vite` 플러그인 방식 (별도 `tailwind.config` 파일 없음)
+**폰트**: Inter 단독
+**핵심 3원칙**: No-Line Rule · Tonal Layering · 순수 검정 금지
 
 ## 테스트 환경
 
